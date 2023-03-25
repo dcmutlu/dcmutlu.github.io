@@ -29,26 +29,46 @@
       height: auto;
       display: block;
     }
+
+        .wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .centered-content {
+      max-width: 800px; /* Adjust this value based on the desired maximum width of your content */
+      padding: 20px 20px 20px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
   </style>
   <title>Scrolling with Space</title>
 </head>
 <body>
+  <div class="wrapper">  
+    <div class="centered-content">
   <div class="container" id="container">
     <!-- Add your cards here -->
   </div>
-
+    </div>
+  </div>
   <script>
     const numCards = 200;
     let lastLoadedCard = -1;
 
     // Emulate an AJAX call to fetch card data
     async function fetchCardData(cardId) {
-      const imgHeight = Math.floor(Math.random() * (100 - 20) + 20);
+      const imgHeight = Math.floor(Math.random() * (200 - 20) + 20);
       await new Promise((resolve) => setTimeout(resolve, 100));
 
       return {
         id: cardId,
-        imgSrc: `https://via.placeholder.com/300x${imgHeight}`,
+        imgSrc: `https://via.placeholder.com/400x${imgHeight}`,
       };
     }
 
