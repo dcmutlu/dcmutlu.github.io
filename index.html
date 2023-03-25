@@ -1,1 +1,125 @@
-Greetings...
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      max-height: 100vh;
+      overflow-y: scroll;
+      border: 1px solid #ccc;
+      position: relative;
+    }
+
+    .card {
+      box-sizing: border-box;
+      padding: 20px;
+      border: 1px solid #ccc;
+      margin: 10px;
+      background-color: #f0f0f0;
+    }
+
+    .card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  </style>
+  <title>Scrolling with Space</title>
+</head>
+<body>
+  <div class="container" id="container">
+    <!-- Add your cards here -->
+  </div>
+
+  <script>
+    const numCards = 200;
+    let lastLoadedCard = -1;
+
+    // Emulate an AJAX call to fetch card data
+    async function fetchCardData(cardId) {
+      const imgHeight = Math.floor(Math.random() * (100 - 20) + 20);
+      await new Promise((resolve) => setTimeout(resolve, 100));
+
+      return {
+        id: cardId,
+        imgSrc: `https://via.placeholder.com/300x${imgHeight}`,
+      };
+    }
+
+    // Create a card with the given data
+    function createCard(cardData) {
+      const card = document.createElement('div');
+      card.classList.add('card');
+      card.innerHTML = `
+        <p>Card ${cardData.id + 1}</p>
+        <img src="${cardData.imgSrc}" alt="Placeholder image" />
+      `;
+
+      return card;
+    }
+
+    // Load more cards if needed
+    async function loadMoreCardsIfNeeded(container) {
+      const windowHeight = container.offsetHeight;
+      const cards = container.querySelectorAll('.card');
+      const lastCard = cards[cards.length - 1];
+
+      if (lastLoadedCard < numCards - 1 && (!lastCard || lastCard.getBoundingClientRect().bottom - windowHeight * 2 <= 0)) {
+        const nextCardId = lastLoadedCard + 1;
+        const nextCardData = await fetchCardData(nextCardId);
+        const nextCard = createCard(nextCardData);
+        container.appendChild(nextCard);
+        lastLoadedCard = nextCardId;
+        loadMoreCardsIfNeeded(container);
+      }
+    }
+
+    // Function to handle space key press
+    function handleSpaceKey(container) {
+      const currentScrollTop = container.scrollTop;
+      const windowHeight = container.offsetHeight;
+      const cards = container.querySelectorAll('.card');
+      let nextScrollTop = currentScrollTop;
+
+      for (const card of cards) {
+        const cardTop = card.offsetTop;
+        const cardBottom = cardTop + card.offsetHeight;
+
+        if (cardBottom > currentScrollTop + windowHeight) {
+          nextScrollTop = cardTop;
+          break;
+        }
+      }
+
+      container.scrollTop = nextScrollTop;
+    }
+
+    // Add event listener for keydown on the document
+    document.addEventListener('keydown', (e) => {
+      if (e.code === 'Space') {
+        e.preventDefault();
+        handleSpaceKey(document.getElementById('container'));
+      }
+    });
+
+    // Add event listener for scroll on the container
+    const container = document.getElementById('container');
+    container.addEventListener('scroll', () => {
+      loadMoreCardsIfNeeded(container);
+    });
+
+    // Load the initial cards into the container
+    (async function () {
+      await loadMoreCardsIfNeeded(container);
+    })();
+
+  </script>
+</body>
+</html>
+
