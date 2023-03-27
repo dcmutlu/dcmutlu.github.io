@@ -68,7 +68,6 @@
     async function fetchCardData(cardId) {
       const imgHeight = Math.floor(Math.random() * (200 - 40) + 40);
       await new Promise((resolve) => setTimeout(resolve, 100));
-
       return {
 	      id: `Card: ${cardId}`,
         imgSrc: `https://via.placeholder.com/400x${imgHeight}`,
@@ -80,11 +79,18 @@
     function createCard(cardData) {
       const card = document.createElement('div');
       card.classList.add('card');
+      if (Math.floor(Math.random() * 3) + 1==1) {
       card.innerHTML = `
+	<p>${cardData.id}</p>    
+        <p>${cardData.label}</p>
+      `;}
+	    else {
+	card.innerHTML = `
 	<p>${cardData.id}</p>    
         <p>${cardData.label}</p>
         <img src="${cardData.imgSrc}" alt="Placeholder image" />
       `;
+	    }
 
       return card;
     }
