@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +31,7 @@
       display: block;
     }
 
-        .wrapper {
+    .wrapper {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -40,6 +41,7 @@
     }
 
     .centered-content {
+     
       max-width: 800px;
       padding: 20px 20px 20px;
       border: 1px solid #ccc;
@@ -68,8 +70,9 @@
       await new Promise((resolve) => setTimeout(resolve, 100));
 
       return {
-        id: cardId,
+	      id: `Card: ${cardId}`,
         imgSrc: `https://via.placeholder.com/400x${imgHeight}`,
+        label: `In a shocking turn of events, the small town of Bumbleton has been taken over by a group of well-trained llamas. According to local reports, these llamas have been plotting their takeover for months, coordinating their efforts in secret. The mayor of Bumbleton, Mary Potters, has released a statement urging residents to remain calm and stay indoors. The town's law enforcement is currently working with llama experts to formulate a plan to retake the town.`
       };
     }
 
@@ -78,7 +81,8 @@
       const card = document.createElement('div');
       card.classList.add('card');
       card.innerHTML = `
-        <p>Card ${cardData.id + 1}</p>
+	<p>${cardData.id}</p>    
+        <p>${cardData.label}</p>
         <img src="${cardData.imgSrc}" alt="Placeholder image" />
       `;
 
