@@ -8,6 +8,8 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
+  background-color: black;
+  color: white;
     }
 
     .container {
@@ -22,7 +24,6 @@
       padding: 20px;
       border: 1px solid #ccc;
       margin: 10px;
-      background-color: #f0f0f0;
     }
 
     .card img {
@@ -63,7 +64,6 @@
   <script>
     const numCards = 200;
     let lastLoadedCard = -1;
-
     // Emulate an AJAX call to fetch card data
     async function fetchCardData(cardId) {
       const imgHeight = Math.floor(Math.random() * (200 - 40) + 40);
