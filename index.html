@@ -4,53 +4,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-  background-color: black;
-  color: white;
-    }
 
-    .container {
-      max-height: 100vh;
-      overflow-y: scroll;
-      border: 1px solid #ccc;
-      position: relative;
-    }
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #1C1C1C;
+    color: #F1F1F1;
+  }
 
-    .card {
-      box-sizing: border-box;
-      padding: 20px;
-      border: 1px solid #ccc;
-      margin: 10px;
-    }
+  .container {
+    max-height: 100vh;
+    overflow-y: scroll;
+    border: 1px solid #3F3F3F;
+    position: relative;
+    background-color: #262626; /* Added gray background to container */
+  }
 
-    .card img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
+  .card {
+    box-sizing: border-box;
+    padding: 20px;
+    border: 1px solid #3F3F3F;
+    margin: 10px;
+    background-color: #2D2D2D;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Added subtle gray shadow for depth */
+  }
 
-    .wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-      padding: 20px;
-      box-sizing: border-box;
-    }
+  .card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-bottom: 1px solid #3F3F3F; /* Added gray border at the bottom of the image */
+  }
 
-    .centered-content {
-     
-      max-width: 800px;
-      padding: 20px 20px 20px;
-      border: 1px solid #ccc;
-      box-sizing: border-box;
-      overflow-y: scroll;
-    }
+  .card:hover {
+    background-color: #383838; /* Added gray hover effect on card */
+  }
 
-  </style>
+  .card h2,
+  .card h3,
+  .card h4,
+  .card h5,
+  .card h6 {
+    color: #C0C0C0; /* Added gray color to heading elements */
+  }
+
+  .card p {
+    color: #B0B0B0; /* Added lighter gray color to paragraph text */
+  }
+</style>
   <title>Scrolling with Space</title>
 </head>
 <body>
